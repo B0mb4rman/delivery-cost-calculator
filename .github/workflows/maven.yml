@@ -25,8 +25,11 @@ jobs:
       - name: Run tests
         run: mvn -B test
 
+      - name: Test with coverage
+        run: mvn -B clean test jacoco:report
+
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: B0mb4rman/delivery-cost-calculator
+         files: target/site/jacoco/jacoco.xml
+         token: ${{ secrets.CODECOV_TOKEN }}
